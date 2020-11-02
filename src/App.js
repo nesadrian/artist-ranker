@@ -5,17 +5,17 @@ import Ranker from './components/Ranker'
 import Artist from './components/Artist'
 import './App.css';
 
-const mock = [
-  {
-    id: 0,
-    name: 'Britney Spears',
-    rating: 1,
-    picurl: ''
-  }
-]
+// const mock = [
+//   {
+//     id: 0,
+//     name: 'Britney Spears',
+//     rating: 1,
+//     picurl: ''
+//   }
+// ]
 
 function App() {
-  const [artists, setArtists] = useState(mock || []);
+  const [artists, setArtists] = useState([]);
 
   const addArtist = name => {
     const artist = {
@@ -25,6 +25,7 @@ function App() {
       picurl: '',
     }
     setArtists([...artists, artist]);
+    console.log(artists);
   }
 
   const changeRating = (id, isIncrementing) => {

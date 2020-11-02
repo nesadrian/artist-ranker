@@ -10,7 +10,7 @@ export default ({ artists, updateArtist }) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const { id } = useParams();
-    const artist = artists.find(artist => artist.id === +id);
+    let artist = artists.find(artist => artist.id === id);
 
     useEffect(() => {
         setInputNameVal(artist.name);
