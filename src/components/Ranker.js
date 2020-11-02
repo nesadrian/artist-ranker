@@ -6,9 +6,9 @@ import Form from './Form'
 const mock = [
     {
         id: 0,
-        name: "Britney Spears",
+        name: 'Britney Spears',
         rating: 1,
-        picurl: ""
+        picurl: ''
     }
 ]
 
@@ -20,15 +20,20 @@ export default () => {
             id: uuidv4(),
             name,
             rating: 0,
-            picurl: ''
+            picurl: '',
         }
         setArtists([...artists, artist]);
+    }
+
+    const changeRating = (id, isIncrementing) => {
+        const newArtists = artists.map(artist => (artist.id === id ? { ...artist, rating: (isIncrementing ? artist.rating + 1 : artist.rating - 1) } : artist));
+        setArtists(newArtists);
     }
 
     return (
         <main>
             <Form addArtist={addArtist} />
-            <List artists={artists} />
+            <List artists={artists} changeRating={changeRating} />
         </main>
     )
 }
