@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 export default ({ addArtist }) => {
-    const [inputVal, setInputVal] = useState('');
+  const [inputVal, setInputVal] = useState('');
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        addArtist(inputVal);
-        setInputVal('');
-    }
+  const handleSubmit = e => {
+    e.preventDefault();
+    addArtist(inputVal);
+    setInputVal('');
+  };
 
-    return (
+  return (
         <form onSubmit={e => handleSubmit(e)}>
             <TextField
                 required
@@ -25,5 +25,5 @@ export default ({ addArtist }) => {
                 Add
             </Button>
         </form>
-    )
-}
+  );
+};
