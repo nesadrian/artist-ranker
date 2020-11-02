@@ -38,6 +38,12 @@ function App() {
     setArtists(newArtists);
   }
 
+  const updateArtist = updatedArtist => {
+    const oldArtists = artists.filter(artist => artist.id !== updatedArtist.id);
+    const updatedArtists = [...oldArtists, updatedArtist]
+    setArtists(updatedArtists);
+  }
+
   return (
     <div className="App">
       <header>
@@ -49,7 +55,7 @@ function App() {
             <Ranker artists={artists} changeRating={changeRating} addArtist={addArtist} />
           </Route>
           <Route exact path="/artist/:id">
-            <Artist artists={artists} />
+            <Artist artists={artists} updateArtist={updateArtist} />
           </Route>
         </Switch>
       </Router>
