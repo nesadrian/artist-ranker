@@ -1,35 +1,8 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 import List from './List';
 import Form from './Form'
 
-const mock = [
-    {
-        id: 0,
-        name: 'Britney Spears',
-        rating: 1,
-        picurl: ''
-    }
-]
-
-export default () => {
-    const [artists, setArtists] = useState(mock || []);
-
-    const addArtist = name => {
-        const artist = {
-            id: uuidv4(),
-            name,
-            rating: 0,
-            picurl: '',
-        }
-        setArtists([...artists, artist]);
-    }
-
-    const changeRating = (id, isIncrementing) => {
-        const newArtists = artists.map(artist => (artist.id === id ? { ...artist, rating: (isIncrementing ? artist.rating + 1 : artist.rating - 1) } : artist));
-        setArtists(newArtists);
-    }
-
+export default ({ artists, addArtist, changeRating }) => {
     return (
         <main>
             <Form addArtist={addArtist} />

@@ -1,14 +1,58 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import Ranker from './components/Ranker'
+import Artist from './components/Artist'
 import './App.css';
 
+const mock = [
+  {
+    id: 0,
+    name: 'Britney Spears',
+    rating: 1,
+    picurl: ''
+  }
+]
+
 function App() {
+  const [artists, setArtists] = useState(mock || []);
+
+  const addArtist = name => {
+    const artist = {
+      id: uuidv4(),
+      name,
+      rating: 0,
+      picurl: '',
+    }
+    setArtists([...artists, artist]);
+  }
+
+  const changeRating = (id, isIncrementing) => {
+    const newArtists = artists.map(artist => {
+      if (artist.id === id) {
+        return { ...artist, rating: (isIncrementing ? artist.rating + 1 : artist.rating - 1) }
+      } else {
+        return artist;
+      }
+    })
+    setArtists(newArtists);
+  }
+
   return (
     <div className="App">
       <header>
         <h1>Artist Ranker</h1>
       </header>
-      <Ranker />
+      <Router>
+        <Switch>
+          <Route exact path="/ranker">
+            <Ranker artists={artists} changeRating={changeRating} addArtist={addArtist} />
+          </Route>
+          <Route exact path="/artist/:id">
+            <Artist artists={artists} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
