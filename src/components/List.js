@@ -1,11 +1,10 @@
 import React from 'react'
 import Card from './Card'
 
-export default () => {
+export default ({ artists }) => {
     return (
         <div>
-            List
-            <Card />
+            {artists.map(artist => <Card artist={artist} />)}
         </div>
     )
 }
